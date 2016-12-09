@@ -206,8 +206,11 @@ You could check the handler's methods code here, not something complicated:
 
 ```
 
-Awesome! Something like code-behind in my lovely WPF or in old Forms (ASP without ASP-server:). You get also a `$sender` argument for applying one event handler on grouped elements.
-You could notice an optional `$number` and `$op` argument in first two common handlers, it's due to the keyboard support, which I added later. Because the `EOSS` not support the needed events, I simply added them to `libs\EOSS\eventList.json` according to the documentation:
+Awesome! Something like code-behind in my lovely WPF or in old Forms,C++ MFC etc (ASP without ASP-server:). Of course, you could explode this feature to models and partial views.
+
+What is important: you got also a `$sender` argument for applying one event handler on grouped elements.
+
+An optional `$number` and `$op` arguments in first two common handlers are there due to the keyboard support, which I added later. Because the `EOSS` not supported the needed events yet, I simply added them to `libs\EOSS\eventList.json` according to the documentation:
 
 ```json
   "onkeypressunicode": "keypress:charCode",
