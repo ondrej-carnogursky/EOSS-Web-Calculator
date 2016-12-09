@@ -205,3 +205,54 @@ You could check the handler's methods code here, not something complicated:
     }
 
 ```
+
+Awesome! Something like code-behind in my lovely WPF or in old Forms (ASP without ASP-server:). You get also a `$sender` argument for applying one event handler on grouped elements.
+You could notice an optional `$number` and `$op` argument in first two common handlers, it's due to the keyboard support, which I added later. Because the `EOSS` not support the needed events, I simply added them to `libs\EOSS\eventList.json` according to the documentation:
+
+```json
+  "onkeypressunicode": "keypress:charCode",
+  "onkeydown": "keydown:keyCode"
+```
+
+and then I could simply connect two new handlers for keyboard events support:
+
+```php
+        //bind to custom keyboard events, added to libs/EOSS/eventList.json
+        $this->csi->calc->onkeypressunicode[] = "keyPressed";
+        $this->csi->calc->onkeydown[] = "keyDown";
+.
+.
+.
+    public function keyPressed($sender, $charCode)
+    {
+        if($charCode>47 && $charCode<58)
+            $this->writeToDisplay(NULL,$charCode - 48); //keys 0-9 pressed
+        else
+            switch($charCode)
+            {
+                case 46:
+                    $this->writeToDisplay(NULL,"."); break; //decimal digits separator, can be extended by "locale" php function 
+                case 42:
+                case 43:
+                case 45:
+                case 47:
+                    $this->onOperator(NULL,chr($charCode)); break; // "+-*/" chars used
+                case 61:
+                    $this->evaluate(); // "=" char used for evaluate
+                    break;
+            }
+    }
+
+    public function keyDown($sender, $keyCode) //needed for special keyboard buttons
+    {
+        switch($keyCode)
+        {
+            case 8:
+                $this->clearLast(); break; // backspace
+            case 27:
+                $this->clearAll(); break; // escape
+        }
+    }
+
+```
+
