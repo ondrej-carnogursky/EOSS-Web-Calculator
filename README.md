@@ -23,9 +23,7 @@ Notice an empty `temp` folder, this is the place where `EOSS` (re)generates all 
 
 You can also notice, that your app url doesn't change anyway, everything is working through AJAX and `EOSS` sessions registry system. Great!
 
-Ok, now let's look into the Calculator code, the way of work is simply straightforward according to the EOSS documentation:
-
-1. I started with html view "indexView.html"
+Ok, now let's look into the Calculator code, the way of work is simply straightforward according to the EOSS documentation. I started with html view `app\view\indexView.html`:
 
 ```html
 <!doctype html>
@@ -113,7 +111,7 @@ At the end I added a button and div for fresh new flashing popup feature of EOSS
 
 ...
 
-Ok, back to the Calculator. The IndexEOSS.php was for me even simplier than the view. I need only declare 3 variables for calc-state, connect to view in EOSS inherited **load** method and bind view's elements events to my 5 handlers in second inherited method **bind**:
+Ok, back to the Calculator. The `app\controller\IndexEOSS.php` was for me even simplier than the view. I need only declare 3 variables for calc-state, connect to view in EOSS inherited **load** method and bind view's elements events to my 5 handlers in second inherited method **bind**:
 
 ```php
 <?php
@@ -141,5 +139,69 @@ class indexEOSS extends EOSS
         $this->csi->bc->onclick[] = "clearAll";
         $this->csi->bce->onclick[] = "clearLast";
         $this->csi->result->onclick[] = "evaluate";
+
+```
+
+and the Calculator was ready to publish and work in browser using the mouse.
+You could check the handler's methods code here, not something complicated:
+
+```php
+    public function writeToDisplay($sender,$number=-1) //use -1 instead of NULL or "" due to php implicit conversion of "0"
+    {
+        if($this->newNumber)
+        {
+            $this->csi->display->html = $number != -1 ? $number : $sender->value;
+            $this->newNumber = false;
+        }
+        else
+            $this->csi->display->html .=  $number != -1 ? $number : $sender->value;
+    }
+
+    public function onOperator($sender,$op=NULL)
+    {
+        $op = $op? : $sender->value;
+        switch($op)
+        {
+            case "+/-":
+                $this->csi->display->html = -$this->csi->display->html; break; //"+/-" is not a real operator on two operands
+            default:
+                if(!$this->newNumber && $this->operator!=NULL)
+                    $this->evaluate();
+                $this->number = $this->csi->display->html;
+                $this->operator = $op;
+                $this->newNumber = true;
+        }
+    }
+
+    public function clearAll()
+    {
+        $this->csi->display->html = "0";
+        $this->newNumber = true;
+    }
+
+    public function clearLast()
+    {
+            $this->csi->display->html = substr($this->csi->display->html,0,-1);
+            if(substr($this->csi->display->html,-1)==".")
+                $this->csi->display->html = substr($this->csi->display->html,0,-1);
+            if($this->csi->display->html == 0)
+                $this->csi->display->html = "0"; //replacing empty display with zero
+    }
+
+    public function evaluate()
+    {
+        switch($this->operator)
+        {
+            case "+":
+                $this->csi->display->html += $this->number; break;
+            case "-":
+                $this->csi->display->html = $this->number - $this->csi->display->html; break;
+            case "*":
+                $this->csi->display->html *= $this->number; break;
+            case "/":
+                $this->csi->display->html = $this->number / $this->csi->display->html; break;
+        }
+        $this->newNumber = true; //prepare to start a new operand number
+    }
 
 ```
