@@ -13,7 +13,8 @@ But with `EOSS` everything works like a charm. It's lightweight and simple, all 
 
 And love to programming, because you need to write some handlers in php controller/model files, which has C-like syntax.
 
-Of course, you can simply copy whole folder's hierarchy from repositary, where you can find `\app\controllers\indexEOSS.php` and `app\views\indexView.php` ready to use. Here is how it looks like: ![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/blob/master/Folders.jpg)
+Of course, you can simply copy whole folder's hierarchy from repositary, where you can find `\app\controllers\indexEOSS.php` and `app\views\indexView.php` ready to use. Here is how it looks like:
+![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/blob/master/Folders.jpg)
 
 Ok, let's look to the Calculator, the way of work is simply straightforward according to the EOSS documentation:
 
