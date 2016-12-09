@@ -7,7 +7,7 @@ But with `EOSS` everything works like a charm. It's lightweight and simple, all 
 - copy `libs` and `assets` folders from [EOSS github repositary](https://github.com/Durisvk/EOSS2) to you root web folder
 - copy `index.php` from the same repository to root
 - create `temp` and `app` folder there
-- copy `cofig.eoss` from reository to `app` folder
+- copy `cofig.eoss` from repository to `app` folder
 - add at least two folders to `app` folder (default is `controller` and `view`, but you can override this in `config.eoss`)
 - add your own php controllers and html/php views to last two mentioned above (optionally you can create and fill-in `model` folder for a greater app)
 
