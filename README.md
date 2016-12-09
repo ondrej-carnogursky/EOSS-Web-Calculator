@@ -220,9 +220,15 @@ An optional `$number` and `$op` arguments in first two common handlers are there
 and then I could simply connect two new handlers for keyboard events support:
 
 ```php
+    public function bind()
+    {
+.
+.
+.
         //bind to custom keyboard events, added to libs/EOSS/eventList.json
         $this->csi->calc->onkeypressunicode[] = "keyPressed";
         $this->csi->calc->onkeydown[] = "keyDown";
+    }
 .
 .
 .
