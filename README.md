@@ -4,14 +4,16 @@ At first I need to say, that I have never-ever program web application. The desk
 
 But with `EOSS` everything works like a charm. It's lightweight and simple, all you need is:
 
-- copy 'libs' and 'assets' folders from [EOSS github repositary](https://github.com/Durisvk/EOSS2) to you root web folder
-- copy 'index.php' from the same repository to root
-- create 'temp' and 'app' folder there
-- copy 'cofig.eoss' to 'app' folder
-- add at least two folders to 'app' folder (default is 'controller' and 'view', but you can override this in 'config.eoss')
-- add your own php controllers and html/php views to last two mentioned above (optionally you can create and fill-in 'model' folder for a greater app)
+- copy `libs` and `assets` folders from [EOSS github repositary](https://github.com/Durisvk/EOSS2) to you root web folder
+- copy `index.php` from the same repository to root
+- create `temp` and `app` folder there
+- copy `cofig.eoss` from reository to `app` folder
+- add at least two folders to `app` folder (default is `controller` and `view`, but you can override this in `config.eoss`)
+- add your own php controllers and html/php views to last two mentioned above (optionally you can create and fill-in `model` folder for a greater app)
 
 And love to programming, because you need to write some handlers in php controller/model files, which has C-like syntax.
+
+Of course, you can simply copy whole folder's hierarchy from repositary, where you can find `\app\controllers\indexEOSS.php` and `app\views\indexView.php` ready to use. Here is how it looks like: ![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/tree/master/Folders.jpg)
 
 Ok, let's look to the Calculator, the way of work is simply straightforward according to the EOSS documentation:
 
@@ -88,7 +90,7 @@ Ok, let's look to the Calculator, the way of work is simply straightforward acco
 </html>
 ```
 
-Simple page with twenty input-buttons and one div tag for displaing the result, all aligned in old good table with some simple styling through CSS and inline style.
-What is important is 'id' for '=','C' and 'CE' buttons and 'data-group' attribute for digit buttons 0-9 and operator buttons '+','-','*','/', including '+/-' for negation. 
+Simple page with twenty buttons and one ***`div`*** tag for displaing the result, all aligned in old good table with some simple styling through CSS and inline style.
+What is important is ***id*** for '=','C' and 'CE' buttons and 'data-group' attribute for digit buttons 0-9 and operator buttons '+','-','*','/', including '+/-' for negation. 
 
 ...
