@@ -17,7 +17,13 @@ Of course, you can simply copy whole folder's hierarchy from repositary, where y
 
 ![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/blob/master/Folders.jpg)
 
-Ok, let's look to the Calculator, the way of work is simply straightforward according to the EOSS documentation:
+Notice an empty `temp` folder, this is the place where `EOSS` (re)generates all necessary magic when some user loads your app. Then it can look like this:
+
+![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/blob/master/Temp.jpg)
+
+You can also notice, that your app url doesn't change anyway, everything is working through AJAX and `EOSS` sessions registry system. Great!
+
+Ok, now let's look into the Calculator code, the way of work is simply straightforward according to the EOSS documentation:
 
 1. I started with html view "indexView.html"
 
@@ -92,7 +98,18 @@ Ok, let's look to the Calculator, the way of work is simply straightforward acco
 </html>
 ```
 
-Simple page with twenty buttons and one ***`div`*** tag for displaing the result, all aligned in old good table with some simple styling through CSS and inline style.
-What is important is ***id*** for '=','C' and 'CE' buttons and 'data-group' attribute for digit buttons 0-9 and operator buttons '+','-','*','/', including '+/-' for negation. 
+Simple page with twenty buttons and one `div` tag for displaing the result, all aligned in old good table with some simple styling through CSS and inline styles.
+What is important is **id** for `=` , `C` and `CE` buttons and **data-group** attribute for digit buttons 0-9 and operator buttons `+` , `-` , `*` , `/` , including `+/-` for negation. 
+At the end I added a button and div for fresh new flashing popup feature of EOSS, but every day a new great features are occuring, so I'll try them later on new version of this simple Calculator. For now I only mention up-to-date features of `EOSS`:
+
+- **Registry** for global static repository support
+- **Database** for simple read/write from/to databasies
+- **Intervals** for timer-like support
+- **Forms** to simplify web forms using
+- **Templating** for web templates support
+- **DataBinding** a great feature for binding view's elements attributes or view-model one/two way properties binding
+- **Services** for web service support
+- **Dependancy injection** for modern DI pattern support
 
 ...
+
