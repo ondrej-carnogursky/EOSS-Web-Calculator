@@ -2,7 +2,7 @@
 
 At first I need to say, that I have never-ever program web application. The desktop is my ground and last years the C#, dotNet and WPF are my favourite technologies. Simply said, I'm too old for learning something so huge, as the Web is.
 
-But with `EOSS` everything works like a charm. It's lightweight and simple, all you need is:
+But with `EOSS` (Event Oriented Server Side) framework everything works like a charm. It's lightweight and simple, all you need is:
 
 - copy `libs` and `assets` folders from [EOSS github repositary](https://github.com/Durisvk/EOSS2) to you root web folder
 - copy `index.php` from the same repository to root
@@ -11,9 +11,9 @@ But with `EOSS` everything works like a charm. It's lightweight and simple, all 
 - add at least two folders to `app` folder (default is `controller` and `view`, but you can override this in `config.eoss`)
 - add your own php controllers and html/php views to last two mentioned above (optionally you can create and fill-in `model` folder for a greater app)
 
-And love to programming, because you need to write some handlers in php controller/model files, which has C-like syntax.
+And love to coding, because you need to write some handlers in php controller/model files, which have C-like syntax.
 
-Of course, you can simply copy whole folder's hierarchy from repositary, where you can find `\app\controllers\indexEOSS.php` and `app\views\indexView.php` ready to use. Here is how it looks like:
+Of course, you can simply copy whole folder's hierarchy from repositary, where you can find `app/controllers/indexEOSS.php` and `app/views/indexView.php` ready to use. Here is how it looks like:
 
 ![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/blob/master/Folders.jpg)
 
@@ -21,9 +21,9 @@ Notice an empty `temp` folder, this is the place where `EOSS` (re)generates all 
 
 ![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/blob/master/Temp.jpg)
 
-You can also notice, that your app url doesn't change anyway, everything is working through AJAX and `EOSS` sessions registry system. Great!
+You can try live example [here](http://ondrej11.webzdarma.cz/). Notice, that your app url doesn't change anyway, everything is working through AJAX and `EOSS` sessions registry system, so the responses are good (check right-down browser corner, you could see a debug popup due to the `"enviroment": "debug"` setting in `app/config.eoss`). Great!
 
-Ok, now let's look into the Calculator code, the way of work is simply straightforward according to the EOSS documentation. I started with html view `app\view\indexView.html`:
+Ok, now let's look into the Calculator code, the way of work is simply straightforward according to the EOSS documentation. I started with html view `app/view/indexView.html`:
 
 ```html
 <!doctype html>
@@ -98,7 +98,7 @@ Ok, now let's look into the Calculator code, the way of work is simply straightf
 
 Simple page with twenty buttons and one `div` tag for displaing the result, all aligned in old good table with some simple styling through CSS and inline styles.
 What is important is **id** for `=` , `C` and `CE` buttons and **data-group** attribute for digit buttons 0-9 and operator buttons `+` , `-` , `*` , `/` , including `+/-` for negation. 
-At the end I added a button and div for fresh new flashing popup feature of EOSS, but every day a new great features are occuring, so I'll try them later on new version of this simple Calculator. For now I only mention up-to-date features of `EOSS`:
+At the end I added a button and div for fresh new flashing popup feature of EOSS, but every day a new great features occures, so I'll try them later on new version of this simple Calculator. For now I only mention up-to-date amazing features of `EOSS`:
 
 - **Registry** for global static repository support
 - **Database** for simple read/write from/to databasies
@@ -111,7 +111,7 @@ At the end I added a button and div for fresh new flashing popup feature of EOSS
 
 ...
 
-Ok, back to the Calculator. The `app\controller\IndexEOSS.php` was for me even simplier than the view. I need only declare 3 variables for calc-state, connect to view in EOSS inherited **load** method and bind view's elements events to my 5 handlers in second inherited method **bind**:
+Ok, back to the Calculator. The `app/controller/IndexEOSS.php` was for me even simplier than the view. I need only declare 3 variables for calc-state, connect to view in EOSS inherited **load** method and bind view's elements events to my 5 handlers in second inherited method **bind**:
 
 ```php
 <?php
@@ -206,11 +206,11 @@ You could check the handler's methods code here, not something complicated:
 
 ```
 
-Awesome! Something like code-behind in my lovely WPF or in old Forms, C++ MFC etc (ASP without ASP-server:). Of course, you could explode this way of work to models and partial views hierarchy.
+Awesome! Something like code-behind in my lovely WPF or in old Forms, VB6, C++ MFC etc (ASP without ASP-server:). Of course, you could explode this way of work to models and partial views hierarchy.
 
 What is important: you get also a `$sender` argument for applying one event handler on grouped elements.
 
-An optional `$number` and `$op` arguments in first two common handlers are there due to the keyboard support, which I added later. Because the `EOSS` not supported the needed events yet, I simply added them to `libs\EOSS\eventList.json` according to the documentation:
+An optional `$number` and `$op` arguments in first two common handlers are there due to the keyboard support, which I added later. Because the `EOSS` not supported the needed events yet, I simply added them to `libs/EOSS/eventList.json` according to the documentation:
 
 ```json
   "onkeypressunicode": "keypress:charCode",
@@ -285,3 +285,15 @@ At last I tried `flashes` feature of `EOSS`, so added a little bit of code:
     }
 ```
 
+Simple and straightforward, at the end I add the `app/config.eoss` content:
+
+```
+    "home_eoss": "indexEOSS",
+    "layout_dir": "view/",
+    "models": "model/",
+    "refresh": true,
+    "enviroment": "debug",
+	"showFlashFunction" : "showFlash"
+```
+
+ I'm looking forward to try the latest news of this rapidly developed and very well done framework.
