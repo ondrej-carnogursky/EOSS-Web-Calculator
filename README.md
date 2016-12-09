@@ -109,7 +109,37 @@ At the end I added a button and div for fresh new flashing popup feature of EOSS
 - **Templating** for web templates support
 - **DataBinding** a great feature for binding view's elements attributes or view-model one/two way properties binding
 - **Services** for web service support
-- **Dependancy injection** for modern DI pattern support
+- **Dependancy Injection** for modern DI pattern support
 
 ...
 
+Ok, back to the Calculator. The IndexEOSS.php was for me even simplier than the view. I need only declare 3 variables for calc-state, connect to view in EOSS inherited **load** method and bind view's elements events to my 5 handlers in second inherited method **bind**:
+
+```php
+<?php
+
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+    public $number = NULL; //last number
+    public $operator = NULL; //last operator
+    public $newNumber = true; //starting new number input indicator
+
+    public function load()
+    {
+        //connect to View
+        $this->csi->setFile("indexView.html");
+    }
+
+    public function bind()
+    {
+        //bind to common event handler by data-group html tag
+        $this->csi->b->onclick[] = "writeToDisplay";
+        $this->csi->o->onclick[] = "onOperator";
+        //bind to event handler by id
+        $this->csi->bc->onclick[] = "clearAll";
+        $this->csi->bce->onclick[] = "clearLast";
+        $this->csi->result->onclick[] = "evaluate";
+
+```
