@@ -206,9 +206,9 @@ You could check the handler's methods code here, not something complicated:
 
 ```
 
-Awesome! Something like code-behind in my lovely WPF or in old Forms,C++ MFC etc (ASP without ASP-server:). Of course, you could explode this feature to models and partial views.
+Awesome! Something like code-behind in my lovely WPF or in old Forms, C++ MFC etc (ASP without ASP-server:). Of course, you could explode this way of work to models and partial views hierarchy.
 
-What is important: you got also a `$sender` argument for applying one event handler on grouped elements.
+What is important: you get also a `$sender` argument for applying one event handler on grouped elements.
 
 An optional `$number` and `$op` arguments in first two common handlers are there due to the keyboard support, which I added later. Because the `EOSS` not supported the needed events yet, I simply added them to `libs\EOSS\eventList.json` according to the documentation:
 
