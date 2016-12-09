@@ -265,3 +265,23 @@ and then I could simply connect two new handlers for keyboard events support:
 
 ```
 
+At last I tried `flashes` feature of `EOSS`, so added a little bit of code:
+
+```php
+    public function bind()
+    {
+.
+.
+.
+        //display EOSS flash popup
+        $this->csi->flash->onclick[] = "flash";
+    }
+.
+.
+.
+    public function flash()
+    {
+        $this->flashMessage("Next I will try here some advanced features of EOSS (Register, Intervals, Database, Forms, Models, DataBinding etc) for customize this simple web calculator to extended 'scientific' one by the user interaction...","success");
+    }
+```
+
