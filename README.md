@@ -21,7 +21,7 @@ Notice an empty `temp` folder, this is the place where `EOSS` (re)generates all 
 
 ![Folders](https://github.com/ondrej11/EOSS-Web-Calculator/blob/master/Temp.jpg)
 
-You can try live example [here](http://ondrej11.webzdarma.cz/). Notice, that your app url doesn't change anyway, everything is working through AJAX and `EOSS` sessions registry system, so the responses are good (check right-down browser corner, you could see a debug popup due to the `"enviroment": "debug"` setting in `app/config.eoss`). Great!
+You can try live example [here](http://ondrej11.wz.sk/). Notice, that your app url doesn't change anyway, everything is working through AJAX and `EOSS` sessions registry system, so the responses are good (check right-down browser corner, you could see a debug popup due to the `"enviroment": "debug"` setting in `app/config.eoss`). Great!
 
 Ok, now let's look into the Calculator code, the way of work is simply straightforward according to the EOSS documentation. I started with html view `app/view/indexView.html`:
 
